@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
 {% from "_formhelpers.html" import render_field %}
-<form name="frmRegister" ng-controller="RegisterCtrl" ng-submit="submit()">
-  <dl>
+<form name="frmRegister"
+      ng-controller="RegisterCtrl"
+      ng-submit="submit()">
+  <dl ng-show="!state.registered">
     {{ render_field(form.username, 'registration', **{'ng-model':'registration.username.data'}) }}
     {{ render_field(form.email, 'registration', **{'ng-model':'registration.email.data'}) }}
     {{ render_field(form.password, 'registration', **{'ng-model':'registration.password.data'}) }}
     {{ render_field(form.confirm, 'registration', **{'ng-model':'registration.confirm.data'}) }}
     {{ render_field(form.accept_tos, 'registration', **{'ng-model':'registration.accept_tos.data'}) }}
   </dl>
-  <p><input type=submit value=Register>
+  <p ng-show="!state.registered"><input type=submit value=Register>
+  <p ng-show="state.registered">Thanks!</p>
 </form>
 {% endblock %}

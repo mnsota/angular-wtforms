@@ -2,9 +2,13 @@
 
     var app = $ng.module('app', []);
 
-    app.controller('RegisterCtrl', ['$scope', '$http', function ($scope, $http) {
-        var registration = {};
-        $scope.registration = registration;
+    app.controller('RegisterCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+        var registration = {}, state = { registered: false};
+
+        $timeout(function(){
+            $scope.registration = registration;
+            $scope.state = state;
+        });
 
         $scope.submit = function () {
             $http({
@@ -14,6 +18,7 @@
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
                 .success(function (resp) {
+                    state.registered = true;
                     $ng.extend($scope.registration, resp);
                 })
                 .error(function (resp) {
