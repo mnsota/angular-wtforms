@@ -1,0 +1,11 @@
+{% macro render_field(field, context) %}
+<dt>{{ field.label }}
+<dd ng-class="{{context}}.{{field.name}}.errors.length && 'has-error'">
+  {{ field(**kwargs)|safe }}
+  <ul ng-show="{{context}}.{{field.name}}.errors.length">
+    <li class="form-control-feedback"
+        ng-repeat="msg in {{context}}.{{field.name}}.errors"
+        ng-bind="msg"></li>
+  </ul>
+</dd>
+{% endmacro %}

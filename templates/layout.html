@@ -1,0 +1,15 @@
+<!doctype html>
+<title>Flaskr</title>
+<link rel=stylesheet type=text/css href="static/vendor/bootstrap/dist/css/bootstrap.min.css">
+<link rel=stylesheet type=text/css href="static/assets/style.css">
+<div class=page ng-app="app">
+  {% for message in get_flashed_messages() %}
+  <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+
+  <script src="static/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="static/vendor/angular/angular.min.js"></script>
+  <script src="static/app/app.js"></script>
+
+</div>
