@@ -34,10 +34,9 @@ def register():
     form = RegistrationForm(request.form, csrf_enabled=False)
     if request.method == 'POST':
       if form.validate_on_submit():
-        return json.dumps(form, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        return json.dumps(form, default=lambda o: o.__dict__, sort_keys=True, indent=4), 200
       else:
-        return json.dumps(form, default=lambda o: o.__dict__, sort_keys=True, indent=4)
-        #return jsonify(form=form)
+        return json.dumps(form, default=lambda o: o.__dict__, sort_keys=True, indent=4), 400
     return render_template('register.html', form=form)
 
 
